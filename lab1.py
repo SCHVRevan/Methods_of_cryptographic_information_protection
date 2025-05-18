@@ -66,7 +66,7 @@ while len(tmp) != 1 and flag < 256:
 
     # Собираем пары для других M и C
     possible_key = [i for i, val in enumerate(arr) if val]
-    print("Indexes: " + str(possible_key))
+    #print("Indexes: " + str(possible_key))
     arr1 = [[0 for i in range(1024)] for j in range(1024)]
     V = [0 for p in range(1024)]
 
