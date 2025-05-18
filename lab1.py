@@ -103,7 +103,7 @@ for i in possible_key:
 print("\n   Found pair: " + str(some))
 print("Original pair: " + str(keys))
 
-pl_msg = random.randint(1, 1024)
+pl_msg = random.randint(1, 256)
 enc_msg = DES.encrypt(keys[1], DES.encrypt(keys[0], pl_msg))
 print("\nCheck: \n                   plain text: " + str(pl_msg))
 print(" encrypted msg with init Keys: " + str(DES.encrypt(keys[1], DES.encrypt(keys[0], pl_msg))))
