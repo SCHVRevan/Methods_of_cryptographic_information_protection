@@ -6,11 +6,11 @@ SubKeyLength = 8
 DataLength = 8
 FLength = 4
 
-# Tables for initial and final permutations (b1, b2, b3, ... b8)
+# Tables for initial and final permutations
 IPtable = (2, 6, 3, 1, 4, 8, 5, 7)
 FPtable = (4, 1, 3, 5, 7, 2, 8, 6)
 
-# Tables for subkey generation (k1, k2, k3, ... k10)
+# Tables for subkey generation
 P10table = (3, 5, 2, 7, 4, 10, 1, 9, 8, 6)
 P8table = (6, 3, 7, 4, 8, 5, 10, 9)
 
@@ -47,7 +47,7 @@ def swap(inputByte):
 def keyGen(key):
 
     def leftShift(keyBitList):
-        """Perform a circular left shift on the first and second five bits"""
+        # Циклический сдвиг влево каждой 5 бит
         shiftedKey = [None] * KeyLength
         shiftedKey[0:9] = keyBitList[1:10]
         shiftedKey[4] = keyBitList[0]
