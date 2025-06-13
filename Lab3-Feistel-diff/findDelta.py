@@ -57,33 +57,16 @@ def find_max_table(table, flag):
 def unification(t1, t2, t3):
     delta_A = []
     delta_C = []
+    res = []
 
     for (a1, c1), (a2, c2), (a3, c3) in product(t1, t2, t3):
         delta_A.append(f"{a1}{a2}{a3}")
         delta_C.append(f"{c1}{c2}{c3}")
 
-    return delta_A, delta_C
-
-
-def find_delta(delta_A, delta_C, permutation):
-    result = []
-
     for a, c in zip(delta_A, delta_C):
-        valid = True
-        seen_positions = {}
+        res.append((a, c))
 
-        for index, mapped_index in enumerate(permutation):
-            if mapped_index in seen_positions:
-                if a[seen_positions[mapped_index]] != a[index]:
-                    valid = False
-                    break
-            else:
-                seen_positions[mapped_index] = index
-
-        if valid:
-            result.append((a, c))
-
-    return result
+    return res
 
 
 def print_table_bl(res):
@@ -103,9 +86,4 @@ print(secondPart)
 print(thirdPart)
 """
 delta = unification(firstPart, secondPart, thirdPart)
-# print(delta)
-delta_A, delta_C = delta[0], delta[1]
-
-true_deltaA = find_delta(delta_A, delta_C, Feistel.EPtable)
-# print("\n===== Δ-таблицы: выбраны пары (ΔA, ΔC) ====")
-# print(true_deltaA)
+# print(f"delta: {delta}")
