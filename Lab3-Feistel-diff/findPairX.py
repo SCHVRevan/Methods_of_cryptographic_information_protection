@@ -3,7 +3,7 @@ import findDelta
 
 # Обратная к FPtable перестановка
 perm = [7, 4, 3, 6, 5, 8, 2, 1]
-DELTA = findDelta.true_deltaA
+DELTA = findDelta.delta
 
 
 def inverse_permutation(block):
@@ -31,10 +31,12 @@ def find_pair_x():
             e_x1 = Feistel.i_perm(x1 & 255)
 
             # Вычисляем S(E(X)) и S(E(X1))
-            xor_x_y = ((x & 65280) >> 8) ^ ((y & 65280) >> 8)
+            # xor_x_y = ((x & 65280) >> 8) ^ ((y & 65280) >> 8)
+            xor_x_y = y >> 8
             sex = inverse_permutation(xor_x_y)
 
-            xor_x1_y1 = ((x1 & 65280) >> 8) ^ ((y1 & 65280) >> 8)
+            # xor_x1_y1 = ((x1 & 65280) >> 8) ^ ((y1 & 65280) >> 8)
+            xor_x1_y1 = y1 >> 8
             sex1 = inverse_permutation(xor_x1_y1)
 
             # Проверяем соответствие с ΔA и ΔC
@@ -47,9 +49,3 @@ def find_pair_x():
 
 
 res = find_pair_x()
-"""
-print(f"\nВсего найдено пар (X, X′): {len(res)}")
-if not res:
-    print("‼️ Ошибка: пары не найдены. Проверьте S-блоки и E-перестановку.")
-    exit(1)
-"""
