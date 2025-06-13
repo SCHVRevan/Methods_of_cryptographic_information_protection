@@ -7,12 +7,6 @@ PAIRS = findPairX.res
 len_pairs = len(PAIRS)
 
 
-random_pairs = []
-for _ in range(10):
-    index = random.randint(1, len_pairs - 1)
-    random_pairs.append(PAIRS[index])
-
-
 def find_value_table(value, table, flag=1):
     res, bool_index = [], []
     for i in range(len(table)):
@@ -35,13 +29,14 @@ def find_value_table(value, table, flag=1):
 
 
 K1 = []
-for i in range(len(random_pairs)):
-    e_x = random_pairs[i][1][0][:4]
-    e_x1 = random_pairs[i][1][1][:4]
-    s_box_x = random_pairs[i][2][0][:3]
-    s_box_x1 = random_pairs[i][2][1][:3]
+for i in range(len(PAIRS)):
+    e_x = PAIRS[i][1][0][:4]
+    e_x1 = PAIRS[i][1][1][:4]
+    s_box_x = PAIRS[i][2][0][:3]
+    s_box_x1 = PAIRS[i][2][1][:3]
 
     right_part_x = find_value_table(int(s_box_x, 2), Feistel.bl1_table)
+    # print(f"s_box_x: {s_box_x}\n right_part_x: {right_part_x}")
     right_part_x1 = find_value_table(int(s_box_x1, 2), Feistel.bl1_table)
 
     for i in right_part_x:
@@ -51,13 +46,12 @@ for i in range(len(random_pairs)):
 
 # print(K1)
 
-
 K2 = []
-for i in range(len(random_pairs)):
-    e_x = random_pairs[i][1][0][4:8]
-    e_x1 = random_pairs[i][1][1][4:8]
-    s_box_x = random_pairs[i][2][0][3:6]
-    s_box_x1 = random_pairs[i][2][1][3:6]
+for i in range(len(PAIRS)):
+    e_x = PAIRS[i][1][0][4:8]
+    e_x1 = PAIRS[i][1][1][4:8]
+    s_box_x = PAIRS[i][2][0][3:6]
+    s_box_x1 = PAIRS[i][2][1][3:6]
 
     right_part_x = find_value_table(int(s_box_x, 2), Feistel.bl2_table)
     right_part_x1 = find_value_table(int(s_box_x1, 2), Feistel.bl2_table)
@@ -70,11 +64,11 @@ for i in range(len(random_pairs)):
 
 
 K3 = []
-for i in range(len(random_pairs)):
-    e_x = random_pairs[i][1][0][8:]
-    e_x1 = random_pairs[i][1][1][8:]
-    s_box_x = random_pairs[i][2][0][6:]
-    s_box_x1 = random_pairs[i][2][1][6:]
+for i in range(len(PAIRS)):
+    e_x = PAIRS[i][1][0][8:]
+    e_x1 = PAIRS[i][1][1][8:]
+    s_box_x = PAIRS[i][2][0][6:]
+    s_box_x1 = PAIRS[i][2][1][6:]
 
     right_part_x = find_value_table(int(s_box_x, 2), Feistel.bl3_table, 2)
     right_part_x1 = find_value_table(int(s_box_x1, 2), Feistel.bl3_table, 2)
